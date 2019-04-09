@@ -22,7 +22,7 @@ To test a DCP slave implementation you need to do the following steps:
 - Execute the test
 
 #### Generate a test file
-Generate a test file from the slaves description file (dcpx), which will be tested, and a choosen transport protocol. E. g. the following snippet can be used to generate a test file for an slave implementation over UDP, by using the [dcp-test-generator](https://github.com/ChKater/dcp-test-generator).
+Generate a test file from the slaves description file (dcpx), which will be tested, and a choosen transport protocol. E. g. the following snippet can be used to generate a test file for an slave implementation over UDP, by using the [dcp-test-generator](https://github.com/modelica/DCPTestGenerator).
 ```
 dcp-test-generator -dcpx /Path/To/Dcpx -UDP
 ```
