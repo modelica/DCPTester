@@ -206,8 +206,7 @@ public:
                 }
                 case DcpPduType::NTF_state_changed: {
                     DcpPduNtfStateChanged &stateChanged = static_cast<DcpPduNtfStateChanged &>(pdu);
-                    std::thread t(&DcpTester::receive_NTF_state_changed, this, now, stateChanged.getSender(), stateChanged.getStateId());
-                    t.detach();
+                    receive_NTF_state_changed(now, stateChanged.getSender(), stateChanged.getStateId());
                     break;
                 }
                 case DcpPduType::NTF_log: {
