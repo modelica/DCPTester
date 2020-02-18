@@ -1038,7 +1038,7 @@ private:
         oss << "min=" << std::to_string(field.name().get().min().get()) << ", "; \
     } \
     if(field.name().get().max().present()){ \
-        oss << "max=" << std::to_string(field.name().get().min().get()) << ", "; \
+        oss << "max=" << std::to_string(field.name().get().max().get()) << ", "; \
     } \
 }
 
