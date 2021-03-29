@@ -1,0 +1,1444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DcpTestSuiteExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="DCP-Testsuite-extension.xsd">
+  
+  <ForEach variableName="transition">
+    <Set>
+      <Test.transitions/>
+    </Set>
+    <If
+      condition=" transition.sending != undefined &amp;&amp; transition.sending.stcRegister != undefined">
+      <Update oldVariable="transition.sending.stcRegister.minorVersion"
+        newVariable="slave.dcpMinorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.majorVersion"
+        newVariable="slave.dcpMajorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.slaveUuid" newVariable="slave.uuid"/>
+      <Update oldVariable="transition.sending.stcRegister.opMode" newVariable="1"/>
+    </If>
+  </ForEach>
+
+ <!-- Configuration -->
+  <ExtensionSet state="1">
+
+	<!-- INVALID_TIME_RESOLUTION 1-->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_time_res>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <Numerator>
+            <Value value="0"/>
+          </Numerator>
+          <Denominator>
+            <Random/>
+          </Denominator>
+        </CFG_time_res>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_TIME_RESOLUTION -->
+            <Value value="8207"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+
+	<!-- INVALID_TIME_RESOLUTION 2-->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_time_res>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <Numerator>
+            <Random/>
+          </Numerator>
+          <Denominator>
+			<Value value="0"/>
+          </Denominator>
+        </CFG_time_res>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_TIME_RESOLUTION -->
+            <Value value="8207"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+
+	<!-- INVALID_TIME_RESOLUTION 3-->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_time_res>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <Numerator>
+            <Invalid/>
+          </Numerator>
+          <Denominator>
+            <Invalid/>
+          </Denominator>
+        </CFG_time_res>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_TIME_RESOLUTION -->
+            <Value value="8207"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+
+	<AddTransition fromOffset="0" toOffset="1">
+	<Sending>
+	  <CFG_clear>
+		<Receiver>
+		  <Value value="1"/>
+		</Receiver>
+	  </CFG_clear>
+	</Sending>
+	</AddTransition>
+	<AddTransition fromOffset="1" toOffset="2">
+	<Receiving>
+	  <RSP_ack>
+		<Sender>
+		  <Value value="1"/>
+		</Sender>
+	  </RSP_ack>
+	</Receiving>
+	</AddTransition>
+	<UpdateMaxStep increase="2"/>
+
+    <!-- Unkwown value reference input -->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_input>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <DataId>
+            <Value value="0"/>
+          </DataId>
+          <Pos>
+            <Random/>
+          </Pos>
+          <TargetVr>
+            <Invalid/>
+          </TargetVr>
+          <SourceDataType>
+            <Invalid/>
+          </SourceDataType>
+        </CFG_input>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_VALUE_REFERENCE -->
+            <Value value="8210"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+
+    <!-- Unkwown value reference output -->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_output>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <DataId>
+            <Value value="0"/>
+          </DataId>
+          <Pos>
+            <Random/>
+          </Pos>
+          <SourceVr>
+            <Invalid/>
+          </SourceVr>
+        </CFG_output>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_VALUE_REFERENCE -->
+            <Value value="8210"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+	
+    <!-- Unkwown value reference parameter -->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_parameter>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <TargetVr>
+            <Invalid/>
+          </TargetVr>
+          <SourceDataType>
+            <Invalid/>
+          </SourceDataType>
+          <payload>
+            <Invalid/>
+          </payload>
+        </CFG_parameter>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_VALUE_REFERENCE -->
+            <Value value="8210"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+	
+    <!-- Unkwown value reference tunable parameter -->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_tunable_parameter>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <ParamId>
+            <Value value="0"/>
+          </ParamId>
+          <Pos>
+            <Random/>
+          </Pos>
+          <TargetVr>
+            <Invalid/>
+          </TargetVr>
+          <SourceDataType>
+            <Invalid/>
+          </SourceDataType>
+        </CFG_tunable_parameter>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_VALUE_REFERENCE -->
+            <Value value="8210"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+
+	<AddTransition fromOffset="0" toOffset="1">
+	<Sending>
+	  <CFG_clear>
+		<Receiver>
+		  <Value value="1"/>
+		</Receiver>
+	  </CFG_clear>
+	</Sending>
+	</AddTransition>
+	<AddTransition fromOffset="1" toOffset="2">
+	<Receiving>
+	  <RSP_ack>
+		<Sender>
+		  <Value value="1"/>
+		</Sender>
+	  </RSP_ack>
+	</Receiving>
+	</AddTransition>
+	<UpdateMaxStep increase="2"/>
+	
+    <!-- INCOMPLETE_CONFIGURATION No Gaps in CFG_config_output -->
+    <If condition="hasOutput()">
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_output>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <SourceVr>
+              <Random/>
+            </SourceVr>
+          </CFG_output>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_output>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="2"/>
+            </Pos>
+            <SourceVr>
+              <Random/>
+            </SourceVr>
+          </CFG_output>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_GAP_OUTPUT_POS -->
+            <ErrorCode>
+              <Value value="12290"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_output>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="1"/>
+            </Pos>
+            <SourceVr>
+              <Random/>
+            </SourceVr>
+          </CFG_output>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <!-- INCOMPLETE_CONFIGURATION CFG_set_target_network_information was not set-->
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_NW_INFO_OUTPUT -->
+            <ErrorCode>
+              <Value value="12293"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_target_network_information_UDP_IPv4>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <TransportProtocol>
+              <Value value="0"/>
+            </TransportProtocol>
+            <IpAdress>
+              <Variable variablenname="Tester.ip"/>
+            </IpAdress>
+            <Port>
+              <Variable variablenname="Tester.port"/>
+            </Port>
+          </CFG_target_network_information_UDP_IPv4>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <!-- INCOMPLETE_CONFIGURATION CFG_config_steps was not set-->
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_STEPS -->
+            <ErrorCode>
+              <Value value="12296"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_steps>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Steps>
+              <Random/>
+            </Steps>
+          </CFG_steps>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+	<!-- Need Valid Time resolution as this is checked first as per DCP Spec p 60-->
+	<AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_time_res>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <Numerator>
+            <Random/>
+          </Numerator>
+          <Denominator>
+            <Random/>
+          </Denominator>
+        </CFG_time_res>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_ack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+        </RSP_ack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+      
+
+      <!-- INCOMPLETE_CONFIGURATION CFG_scope was not set-->
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_SCOPE -->
+            <ErrorCode>
+              <Value value="12295"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_clear>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+          </CFG_clear>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+    </If>
+
+    <If condition="hasInput()">
+      <!-- INCOMPLETE_CONFIGURATION No Gaps in CFG_config_input -->
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_input>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_input>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_input>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="2"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_input>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_GAP_INPUT_POS -->
+            <ErrorCode>
+              <Value value="12289"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+	  
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_input>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="1"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_input>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_NW_INFO_INPUT -->
+            <ErrorCode>
+              <Value value="12292"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_clear>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+          </CFG_clear>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+    </If>
+	
+    <!-- INCOMPLETE_CONFIGURATION No Gaps in CFG_config_tunable_paramter -->
+    <If condition="hasTunableParameter()">
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_tunable_parameter>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <ParamId>
+              <Value value="0"/>
+            </ParamId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_tunable_parameter>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_tunable_parameter>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <ParamId>
+              <Value value="0"/>
+            </ParamId>
+            <Pos>
+              <Value value="2"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_tunable_parameter>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_GAP_TUNABLE_POS -->
+            <ErrorCode>
+              <Value value="12291"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_tunable_parameter>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <ParamId>
+              <Value value="0"/>
+            </ParamId>
+            <Pos>
+              <Value value="1"/>
+            </Pos>
+            <TargetVr>
+              <Random/>
+            </TargetVr>
+            <SourceDataType>
+              <Random/>
+            </SourceDataType>
+          </CFG_tunable_parameter>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <!-- INCOMPLETE_CONFIGURATION CFG_set_param_network_information was not set-->
+
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <STC_prepare>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <StateId>
+              <Value value="1"/>
+            </StateId>
+          </STC_prepare>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <!-- INCOMPLETE_CONFIG_NW_INFO_TUNABLE -->
+            <ErrorCode>
+              <Value value="12294"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_clear>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+          </CFG_clear>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+    </If>
+
+	
+	<AddTransition fromOffset="0" toOffset="1">
+	<Sending>
+	  <CFG_clear>
+		<Receiver>
+		  <Value value="1"/>
+		</Receiver>
+	  </CFG_clear>
+	</Sending>
+	</AddTransition>
+	<AddTransition fromOffset="1" toOffset="2">
+	<Receiving>
+	  <RSP_ack>
+		<Sender>
+		  <Value value="1"/>
+		</Sender>
+	  </RSP_ack>
+	</Receiving>
+	</AddTransition>
+	<UpdateMaxStep increase="2"/>
+	
+	    <!-- Wrong data type to input assignment-->
+    <ForEach variableName="input">
+      <Set>
+        <Slave.Inputs/>
+      </Set>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_input>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Value value="0"/>
+            </DataId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <TargetVr>
+              <Variable variablenname="input.valueReference"/>
+            </TargetVr>
+            <SourceDataType>
+              <Invalid/>
+            </SourceDataType>
+          </CFG_input>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <ErrorCode>
+              <!-- INVALID_SOURCE_DATA_TYPE -->
+              <Value value="8203"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+    </ForEach>
+    <!-- Wrong data type to tunable parameter assignment-->
+    <ForEach variableName="parameter">
+      <Set>
+        <Slave.TunableParameters/>
+      </Set>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_tunable_parameter>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <ParamId>
+              <Value value="0"/>
+            </ParamId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <TargetVr>
+              <Variable variablenname="parameter.valueReference"/>
+            </TargetVr>
+            <SourceDataType>
+              <Invalid/>
+            </SourceDataType>
+          </CFG_tunable_parameter>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_nack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+            <ErrorCode>
+              <!-- INVALID_SOURCE_DATA_TYPE -->
+              <Value value="8203"/>
+            </ErrorCode>
+          </RSP_nack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="2"/>
+    </ForEach>
+
+	<!-- Wrong state in transition-->
+    <ForEach variableName="oState">
+      <Set>
+        <DcpStates/>
+      </Set>
+      <If condition="state != oState">
+        <AddTransition fromOffset="0" toOffset="1">
+          <Sending>
+            <STC_prepare>
+              <Receiver>
+                <Value value="1"/>
+              </Receiver>
+              <StateId>
+                <Variable variablenname="oState"/>
+              </StateId>
+            </STC_prepare>
+          </Sending>
+        </AddTransition>
+        <AddTransition fromOffset="1" toOffset="2">
+          <Receiving>
+            <RSP_nack>
+              <Sender>
+                <Value value="1"/>
+              </Sender>
+              <ErrorCode>
+                <!-- INVALID_STATE_ID -->
+                <Value value="8205"/>
+              </ErrorCode>
+            </RSP_nack>
+          </Receiving>
+        </AddTransition>
+        <UpdateMaxStep increase="2"/>
+      </If>
+    </ForEach>
+	
+	<AddTransition fromOffset="0" toOffset="1">
+	<Sending>
+	  <CFG_clear>
+		<Receiver>
+		  <Value value="1"/>
+		</Receiver>
+	  </CFG_clear>
+	</Sending>
+	</AddTransition>
+	<AddTransition fromOffset="1" toOffset="2">
+	<Receiving>
+	  <RSP_ack>
+		<Sender>
+		  <Value value="1"/>
+		</Sender>
+	  </RSP_ack>
+	</Receiving>
+	</AddTransition>
+	<UpdateMaxStep increase="2"/>
+	
+    <!-- Start configuration for normal operation -->
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <CFG_time_res>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <Numerator>
+            <Random/>
+          </Numerator>
+          <Denominator>
+            <Random/>
+          </Denominator>
+        </CFG_time_res>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_ack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+        </RSP_ack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+	
+    <!-- Configure Inputs -->
+    <ForEach variableName="input">
+      <Set>
+        <Slave.Inputs/>
+      </Set>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_input>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(input.valueReference)"/>
+            </DataId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <TargetVr>
+              <Variable variablenname="input.valueReference"/>
+            </TargetVr>
+            <SourceDataType>
+              <Variable variablenname="dataType(input.valueReference)"/>
+            </SourceDataType>
+          </CFG_input>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <AddTransition fromOffset="2" toOffset="3">
+        <Sending>
+          <CFG_source_network_information_UDP_IPv4>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(input.valueReference)"/>
+            </DataId>
+            <TransportProtocol>
+              <Value value="0"/>
+            </TransportProtocol>
+            <IpAdress>
+              <Random/>
+            </IpAdress>
+            <Port>
+              <Random/>
+            </Port>
+          </CFG_source_network_information_UDP_IPv4>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="3" toOffset="4">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <AddTransition fromOffset="4" toOffset="5">
+        <Sending>
+          <CFG_scope>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(input.valueReference)"/>
+            </DataId>
+            <Scope>
+              <Value value="0"/>
+            </Scope>
+          </CFG_scope>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="5" toOffset="6">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="6"/>
+    </ForEach>
+    <!-- Configure Outputs -->
+    <ForEach variableName="output">
+      <Set>
+        <Slave.Outputs/>
+      </Set>
+      <AddTransition fromOffset="0" toOffset="1">
+        <Sending>
+          <CFG_output>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(output.valueReference)"/>
+            </DataId>
+            <Pos>
+              <Value value="0"/>
+            </Pos>
+            <SourceVr>
+              <Variable variablenname="output.valueReference"/>
+            </SourceVr>
+          </CFG_output>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="1" toOffset="2">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <AddTransition fromOffset="2" toOffset="3">
+        <Sending>
+          <CFG_target_network_information_UDP_IPv4>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(output.valueReference)"/>
+            </DataId>
+            <TransportProtocol>
+              <Value value="0"/>
+            </TransportProtocol>
+            <IpAdress>
+              <Variable variablenname="Tester.ip"/>
+            </IpAdress>
+            <Port>
+              <Variable variablenname="Tester.port"/>
+            </Port>
+          </CFG_target_network_information_UDP_IPv4>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="3" toOffset="4">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+
+      <AddTransition fromOffset="4" toOffset="5">
+        <Sending>
+          <CFG_steps>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(output.valueReference)"/>
+            </DataId>
+            <Steps>
+              <Random/>
+            </Steps>
+          </CFG_steps>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="5" toOffset="6">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <AddTransition fromOffset="6" toOffset="7">
+        <Sending>
+          <CFG_scope>
+            <Receiver>
+              <Value value="1"/>
+            </Receiver>
+            <DataId>
+              <Variable variablenname="dataId(output.valueReference)"/>
+            </DataId>
+            <Scope>
+              <Value value="0"/>
+            </Scope>
+          </CFG_scope>
+        </Sending>
+      </AddTransition>
+      <AddTransition fromOffset="7" toOffset="8">
+        <Receiving>
+          <RSP_ack>
+            <Sender>
+              <Value value="1"/>
+            </Sender>
+          </RSP_ack>
+        </Receiving>
+      </AddTransition>
+      <UpdateMaxStep increase="8"/>
+    </ForEach>
+
+  </ExtensionSet>
+
+  <ForEach variableName="step">
+    <Set>
+      <Test.steps/>
+    </Set>
+    <If
+      condition="determineState(step) == 9 || determineState(step) == 10 || determineState(step) == 11">
+      <ForEach variableName="output">
+        <Set>
+          <Slave.Outputs/>
+        </Set>
+        <AddTransition fromVariable="step" toVariable="step" log="true">
+          <Receiving>
+            <DAT_input_output>
+              <DataId>
+                <Variable variablenname="dataId(output.valueReference)"/>
+              </DataId>
+              <ReceivingPayloadField pos="0">
+                <Condition condition="minMaxDefined(output.valueReference)">
+                  <ConditionFullfilled>
+                    <BetweenMinMax valueReferenceVariable="output.valueReference"/>
+                  </ConditionFullfilled>
+                  <Else>
+                    <Any valueReferenceVariable="output.valueReference"/>
+                  </Else>
+                </Condition>
+              </ReceivingPayloadField>
+            </DAT_input_output>
+          </Receiving>
+        </AddTransition>
+      </ForEach>
+      <ForEach variableName="input">
+        <Set>
+          <Slave.Inputs/>
+        </Set>
+        <AddTransition fromVariable="step" toVariable="step">
+          <Sending>
+            <ClockTime
+              numerator="1000"
+              denominator="1000"/>
+            <DAT_input_output>
+              <DataId>
+                <Variable variablenname="dataId(input.valueReference)"/>
+              </DataId>
+              <SendingPayloadField pos="0">
+                <Default valueReferenceVariable="input.valueReference"/>
+              </SendingPayloadField>
+            </DAT_input_output>
+          </Sending>
+        </AddTransition>
+      </ForEach>
+      <!-- Send Dat_parameter -->
+      <ForEach variableName="parameter">
+        <Set>
+          <Slave.TunableParameters/>
+        </Set>
+        <AddTransition fromVariable="step" toVariable="step">
+          <Sending>
+            <ClockTime
+             numerator="1000"
+              denominator="1000"/>
+            <DAT_parameter>
+              <ParamId>
+                <Variable variablenname="paramId(parameter.valueReference)"/>
+              </ParamId>
+              <SendingPayloadField pos="0">
+                <Default valueReferenceVariable="parameter.valueReference"/>
+              </SendingPayloadField>
+            </DAT_parameter>
+          </Sending>
+        </AddTransition>
+      </ForEach>
+    </If>
+    <If condition="determineState(step) == 8 || determineState(step) == 14">
+      <ForEach variableName="output">
+        <Set>
+          <Slave.Outputs/>
+        </Set>
+        <AddTransition fromVariable="step" toVariable="step">
+          <Receiving>
+            <DAT_input_output>
+              <DataId>
+                <Variable variablenname="dataId(output.valueReference)"/>
+              </DataId>
+              <ReceivingPayloadField pos="0">
+                <Condition condition="minMaxDefined(output.valueReference)">
+                  <ConditionFullfilled>
+                    <BetweenMinMax valueReferenceVariable="output.valueReference"/>
+                  </ConditionFullfilled>
+                  <Else>
+                    <Any valueReferenceVariable="output.valueReference"/>
+                  </Else>
+                </Condition>
+              </ReceivingPayloadField>
+            </DAT_input_output>
+          </Receiving>
+        </AddTransition>
+      </ForEach>
+    </If>
+  </ForEach>
+
+</DcpTestSuiteExtension>

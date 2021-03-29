@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DcpTestSuiteExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="DCP-Testsuite-extension.xsd">
+  
+  <ForEach variableName="transition">
+    <Set>
+      <Test.transitions/>
+    </Set>
+    <If
+      condition=" transition.sending != undefined &amp;&amp; transition.sending.stcRegister != undefined">
+      <Update oldVariable="transition.sending.stcRegister.minorVersion"
+        newVariable="slave.dcpMinorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.majorVersion"
+        newVariable="slave.dcpMajorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.slaveUuid" newVariable="slave.uuid"/>
+      <Update oldVariable="transition.sending.stcRegister.opMode" newVariable="1"/>
+    </If>
+  </ForEach>
+
+ <!-- Configuration -->
+  <ExtensionSet state="1">
+    <ForEach variableName="oState">
+      <Set>
+        <DcpStates/>
+      </Set>
+      <If condition="state != oState">
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <STC_prepare>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <StateId>
+            <Variable variablenname="oState"/>
+          </StateId>
+        </STC_prepare>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_STATE_ID -->
+            <Value value="8205"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    </If>
+    </ForEach>
+
+    <ForEach variableName="invalidState">
+    <Set>
+        <IntegerRange min="19" max="255"/>
+    </Set>
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+        <STC_prepare>
+          <Receiver>
+            <Value value="1"/>
+          </Receiver>
+          <StateId>
+            <Variable variablenname="invalidState"/>
+          </StateId>
+        </STC_prepare>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_STATE_ID -->
+            <Value value="8205"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    </ForEach>
+    <ForEach variableName="oState">
+      <Set>
+        <DcpStates/>
+      </Set>
+      <If condition="state != oState">
+    <AddTransition fromOffset="0" toOffset="1">
+      <Sending>
+            <STC_unregister>
+              <Receiver>
+                <Value value="1"/>
+              </Receiver>
+              <StateId>
+                <Variable variablenname="oState"/>
+              </StateId>
+            </STC_unregister>
+      </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+      <Receiving>
+        <RSP_nack>
+          <Sender>
+            <Value value="1"/>
+          </Sender>
+          <ErrorCode>
+            <!-- INVALID_STATE_ID -->
+            <Value value="8205"/>
+          </ErrorCode>
+        </RSP_nack>
+      </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    </If>
+    </ForEach>
+  </ExtensionSet>
+</DcpTestSuiteExtension>

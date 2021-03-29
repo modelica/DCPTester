@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DcpTestSuiteExtension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="DCP-Testsuite-extension.xsd">
+  
+  <ForEach variableName="transition">
+    <Set>
+      <Test.transitions/>
+    </Set>
+    <If
+      condition=" transition.sending != undefined &amp;&amp; transition.sending.stcRegister != undefined">
+      <Update oldVariable="transition.sending.stcRegister.minorVersion"
+        newVariable="slave.dcpMinorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.majorVersion"
+        newVariable="slave.dcpMajorVersion"/>
+      <Update oldVariable="transition.sending.stcRegister.slaveUuid" newVariable="slave.uuid"/>
+      <Update oldVariable="transition.sending.stcRegister.opMode" newVariable="1"/>
+    </If>
+  </ForEach>
+
+
+</DcpTestSuiteExtension>

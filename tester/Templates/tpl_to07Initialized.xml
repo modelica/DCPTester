@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DcpTestProcedure version="0.0" name="allPaths.xml" acceptingSteps="49">
+    <TransportProtocols/>
+    <Transition from="0" to="1">
+        <Sending>
+            <STC_register receiver="1" state_id="0" op_mode="0" major_version="0" minor_version="0"/>
+        </Sending>
+    </Transition>
+    
+    <Transition from="1" to="2">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="2" to="4">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="1"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="1" to="3">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="1"/>
+        </Receiving>
+    </Transition>	
+    <Transition from="3" to="4">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    
+    <Transition from="4" to="5">
+        <Sending>
+            <STC_prepare receiver="1" state_id="1"/>
+        </Sending>
+    </Transition>
+    
+    <Transition from="5" to="6">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="6" to="7">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="2"/>
+        </Receiving>
+    </Transition>
+    <Transition from="7" to="32">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="3"/>
+        </Receiving>
+    </Transition>
+    <Transition from="6" to="8">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="3"/>
+        </Receiving>
+    </Transition>
+	<Transition from="8" to="32">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="2"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="5" to="9">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="2"/>
+        </Receiving>
+    </Transition>
+    <Transition from="9" to="10">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="10" to="32">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="3"/>
+        </Receiving>
+    </Transition>
+    <Transition from="9" to="11">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="3"/>
+        </Receiving>
+    </Transition>
+    <Transition from="11" to="32">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="5" to="60">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="3"/>
+        </Receiving>
+    </Transition>
+    <Transition from="60" to="61">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="61" to="32">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="2"/>
+        </Receiving>
+    </Transition>
+    <Transition from="60" to="62">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="2"/>
+        </Receiving>
+    </Transition>
+    <Transition from="62" to="32">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="32" to="14">
+        <Sending>
+            <STC_configure receiver="1" state_id="3"/>
+        </Sending>
+    </Transition>
+    <Transition from="14" to="15">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="15" to="16">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="4"/>
+        </Receiving>
+    </Transition>
+    <Transition from="16" to="100">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="5"/>
+        </Receiving>
+    </Transition>
+    
+    <Transition from="100" to="101">
+        <Sending>
+            <STC_initialize receiver="1" state_id="5"/>
+        </Sending>
+    </Transition>
+    <Transition from="101" to="102">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="102" to="103">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="6"/>
+        </Receiving>
+    </Transition>
+    <Transition from="103" to="132">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="7"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="132" to="35">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="15"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="132" to="33">
+        <Sending>
+            <STC_stop receiver="1" state_id="7"/>
+        </Sending>
+    </Transition>
+    
+    <Transition from="33" to="34">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="34" to="35">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="15"/>
+        </Receiving>
+    </Transition>
+    <Transition from="35" to="36">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="16"/>
+        </Receiving>
+    </Transition>
+    <Transition from="34" to="135">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="16"/>
+        </Receiving>
+    </Transition>
+    <Transition from="135" to="36">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="15"/>
+        </Receiving>
+    </Transition>
+
+
+    <Transition from="33" to="50">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="15"/>
+        </Receiving>
+    </Transition>
+    <Transition from="50" to="35">
+        <Receiving>
+            <RSP_nack sender="1" error_code="29"/>
+        </Receiving>
+    </Transition>
+    <Transition from="50" to="51">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="16"/>
+        </Receiving>
+    </Transition>
+    <Transition from="51" to="36">
+        <Receiving>
+            <RSP_nack sender="1" error_code="29"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="36" to="55">
+        <Sending>
+            <STC_deregister receiver="1" state_id="16"/>
+        </Sending>
+    </Transition>
+    <Transition from="55" to="56">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="56" to="49">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="0"/>
+        </Receiving>
+    </Transition> 
+</DcpTestProcedure>

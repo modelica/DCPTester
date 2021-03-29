@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DcpTestProcedure version="0.0" name="allPaths.xml" acceptingSteps="12">
+    <TransportProtocols/>
+    <Transition from="0" to="1">
+        <Sending>
+            <STC_register receiver="1" state_id="0" op_mode="0" major_version="0" minor_version="0"/>
+        </Sending>
+    </Transition>
+    <Transition from="1" to="2">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="2" to="3">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="1"/>
+        </Receiving>
+    </Transition>
+	<Transition from="3" to="4">
+        <Sending>
+            <STC_deregister receiver="1" state_id="1"/>
+        </Sending>
+    </Transition>
+    <Transition from="4" to="5">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="5" to="6">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="0"/>
+        </Receiving>
+    </Transition>
+    <Transition from="6" to="7">
+        <Sending>
+            <STC_register receiver="1" state_id="0" op_mode="0" major_version="0" minor_version="0"/>
+        </Sending>
+    </Transition>
+        <Transition from="7" to="8">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="8" to="9">
+        <Receiving>
+			<NTF_state_changed sender="1" state_id="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="9" to="10">
+        <Sending>
+            <STC_deregister receiver="1" state_id="1"/>
+        </Sending>
+    </Transition>
+    <Transition from="10" to="11">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="11" to="12">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="0"/>
+        </Receiving>
+    </Transition>	
+</DcpTestProcedure>
