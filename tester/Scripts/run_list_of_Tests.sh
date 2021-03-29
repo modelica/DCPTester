@@ -21,7 +21,7 @@ while read name; do
 		#echo $name "$SUCCESS">> summary.log
 		echo $name $(date +%Y-%m-%d_%H:%M:%S) "SUCCESS" >> summary.log
 	else
-		echo $name "FAILED" >>summary.log
+		echo $name "REVIEW" >>summary.log
 	fi
 	wait
 done < $file
