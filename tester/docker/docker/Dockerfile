@@ -25,11 +25,12 @@ WORKDIR /var/build/DCPTester
 RUN chmod +x build.sh
 RUN ./build.sh
 
+WORKDIR /var/build/DCPTester/tester/SlaveUnderTest
+RUN mkdir build 
+RUN cd build && cmake .. && cmake --build .
+
 RUN git clone https://github.com/modelica/DCPTestGenerator.git /var/build/TestGenerator
 WORKDIR /var/build/TestGenerator
 RUN mvn verify
 
-run git clone https://gitlab+deploy-token-48:Y8qA894UuyD3gM3fbLxs@gitlab.v2c2.at/clemensschiffer/dcpslaveundertest.git /var/build/slave_under_test
-WORKDIR /var/build/slave_under_test/SlaveUnderTest
-RUN mkdir build 
-RUN cd build && cmake .. && cmake --build .
+
