@@ -1,0 +1,14 @@
+version: '3'
+
+
+services:
+
+  Test:
+    image: 'ubuntu_test2'
+    user: root
+    working_dir: /var/build
+    volumes:
+      - ./data/:/var/share:z
+    build: ./docker
+    command: >
+        /bin/bash -c "ls /var/build/"

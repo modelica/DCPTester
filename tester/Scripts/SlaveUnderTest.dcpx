@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dcpSlaveDescription dcpMajorVersion="1" dcpMinorVersion="0" dcpSlaveName="SlaveUnderTest" uuid="0d7217ea-ac72-11ea-bb37-0242ac130002" variableNamingConvention="flat" >
+	<OpMode>
+
+		<SoftRealTime/>
+		<NonRealTime />
+	</OpMode>
+
+
+	<TimeRes>
+		<Resolution numerator="10" denominator="10000" fixed="false" />
+		<Resolution numerator="10" denominator="100" fixed="false" />
+		<Resolution numerator="5" denominator="100" fixed="false" />
+	</TimeRes>
+
+	<TransportProtocols>
+		<UDP_IPv4 maxPduSize="65507" >
+			<Control host="127.0.0.1" port="8080" />
+			<DAT_input_output host="" >
+				<AvailablePortRange from="2048" to="65535" />
+			</DAT_input_output>
+			<DAT_parameter host="" >
+				<AvailablePortRange from="2048" to="65535" />
+			</DAT_parameter>
+		</UDP_IPv4>
+
+	</TransportProtocols>
+	<CapabilityFlags canAcceptConfigPdus="true" canHandleReset="true" canHandleVariableSteps="true" canProvideLogOnRequest="true" canProvideLogOnNotification="true" />
+	<Variables>
+		<Variable name="OutputUInt8" valueReference="1" >
+			<Output>
+				<Uint8 />
+			</Output>
+		</Variable>
+		<Variable name="InputUInt8" valueReference="2" >
+			<Input>
+				<Uint8 start="97 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputUInt16" valueReference="3" >
+			<Output>
+				<Uint16 />
+			</Output>
+		</Variable>
+		<Variable name="InputUInt16" valueReference="4" >
+			<Input>
+				<Uint16 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputUInt32" valueReference="5" >
+			<Output>
+				<Uint32 />
+			</Output>
+		</Variable>
+		<Variable name="InputUInt32" valueReference="6" >
+			<Input>
+				<Uint32 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputUInt64" valueReference="7" >
+			<Output>
+				<Uint64 />
+			</Output>
+		</Variable>
+		<Variable name="InputUInt64" valueReference="8" >
+			<Input>
+				<Uint64 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputInt8" valueReference="9" >
+			<Output>
+				<Int8 />
+			</Output>
+		</Variable>
+		<Variable name="InputInt8" valueReference="10" >
+			<Input>
+				<Int8 start="97 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputInt16" valueReference="11" >
+			<Output>
+				<Int16 />
+			</Output>
+		</Variable>
+		<Variable name="InputInt16" valueReference="12" >
+			<Input>
+				<Int16 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputInt32" valueReference="13" >
+			<Output>
+				<Int32 />
+			</Output>
+		</Variable>
+		<Variable name="InputInt32" valueReference="14" >
+			<Input>
+				<Int32 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputInt64" valueReference="15" >
+			<Output>
+				<Int64 />
+			</Output>
+		</Variable>
+		<Variable name="InputInt64" valueReference="16" >
+			<Input>
+				<Int64 start="2 " />
+			</Input>
+		</Variable>
+		<Variable name="Outputf32" valueReference="17" >
+			<Output>
+				<Float32 />
+			</Output>
+		</Variable>
+		<Variable name="Inputf32" valueReference="18" >
+			<Input>
+				<Float32 start="10 " />
+			</Input>
+		</Variable>
+		<Variable name="Outputf64" valueReference="19" >
+			<Output>
+				<Float64 />
+			</Output>
+		</Variable>
+		<Variable name="Inputf64" valueReference="20" >
+			<Input>
+				<Float64 start="10 " />
+			</Input>
+		</Variable>
+		<Variable name="OutputBin" valueReference="21" >
+			<Output>
+				<Binary maxSize="100" />
+			</Output>
+		</Variable>
+		<Variable name="InputBin" valueReference="22" >
+			<Input>
+				<Binary maxSize="100" start="00" />
+			</Input>
+		</Variable>
+		<Variable name="OutputStr" valueReference="23" >
+			<Output>
+				<String maxSize="200" />
+			</Output>
+		</Variable>
+		<Variable name="InputStr" valueReference="24" >
+			<Input>
+				<String maxSize="200" start="abaab" />
+			</Input>
+		</Variable>
+		<Variable name="ParaUInt8" valueReference="26" variability="fixed" >
+			<Parameter>
+				<Uint8 start="3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaUInt16" valueReference="27" variability="fixed" >
+			<Parameter>
+				<Uint16 start="3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaUInt32" valueReference="28" variability="fixed" >
+			<Parameter>
+				<Uint32 start="3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaUInt64" valueReference="29" variability="fixed" >
+			<Parameter>
+				<Uint64 start="3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaInt8" valueReference="30" variability="fixed" >
+			<Parameter>
+				<Int8 start="-3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaInt16" valueReference="31" variability="fixed" >
+			<Parameter>
+				<Int16 start="-3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaInt32" valueReference="32" variability="fixed" >
+			<Parameter>
+				<Int32 start="-3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="ParaInt64" valueReference="33" variability="fixed" >
+			<Parameter>
+				<Int64 start="-3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="Paraf32" valueReference="34" variability="fixed" >
+			<Parameter>
+				<Float32 start="3 " />
+			</Parameter>
+		</Variable>
+		<Variable name="Paraf64" valueReference="35" variability="fixed" >
+			<Parameter>
+				<Float64 start="3 " />
+			</Parameter>
+		</Variable>
+	</Variables> 
+	<Log>
+		<Categories>
+			<Category id="1" name="DCP_SLAVE" />
+		</Categories>
+		<Templates>
+			<Template id="1" category="1" level="3" msg="[Time = %float64]: sin(%uint64 + %float64) = %float64" />
+		</Templates>
+	</Log> 
+</dcpSlaveDescription>

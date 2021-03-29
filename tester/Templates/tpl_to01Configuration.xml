@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DcpTestProcedure version="0.0" name="allPaths.xml" acceptingSteps="49">
+    <TransportProtocols/>
+    <Transition from="0" to="7">
+        <Sending>
+            <STC_register receiver="1" state_id="0" op_mode="0" major_version="0" minor_version="0"/>
+        </Sending>
+    </Transition>
+    <Transition from="7" to="8">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="8" to="36">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="1"/>
+        </Receiving>
+    </Transition>
+
+    <Transition from="36" to="55">
+        <Sending>
+            <STC_deregister receiver="1" state_id="1"/>
+        </Sending>
+    </Transition>
+    <Transition from="55" to="56">
+        <Receiving>
+            <RSP_ack sender="1"/>
+        </Receiving>
+    </Transition>
+    <Transition from="56" to="49">
+        <Receiving>
+            <NTF_state_changed sender="1" state_id="0"/>
+        </Receiving>
+    </Transition> 
+</DcpTestProcedure>
