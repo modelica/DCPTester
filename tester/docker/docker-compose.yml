@@ -4,7 +4,7 @@ version: '3'
 services:
 
   Test:
-    image: 'DCPTester_ubuntu'
+    image: 'dcptester_ubuntu'
     user: root
     working_dir: /var/build
     volumes:
