@@ -24,6 +24,9 @@ RUN git clone https://github.com/modelica/DCPTester.git /var/build/DCPTester
 WORKDIR /var/build/DCPTester
 RUN chmod +x build.sh
 RUN ./build.sh
+WORKDIR /var/build/DCPTester/tester/Scripts
+RUN chmod +x generate_Tests.sh
+RUN chmod +x run_list_of_Tests.sh
 
 WORKDIR /var/build/DCPTester/tester/SlaveUnderTest
 RUN mkdir build 
