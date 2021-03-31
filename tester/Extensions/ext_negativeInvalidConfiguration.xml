@@ -20,7 +20,7 @@
  <!-- Configuration -->
   <ExtensionSet state="1">
 
-	<!-- INVALID_TIME_RESOLUTION 1-->
+    <!-- INVALID_TIME_RESOLUTION 1-->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
         <CFG_time_res>
@@ -51,7 +51,7 @@
     </AddTransition>
     <UpdateMaxStep increase="2"/>
 
-	<!-- INVALID_TIME_RESOLUTION 2-->
+    <!-- INVALID_TIME_RESOLUTION 2-->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
         <CFG_time_res>
@@ -62,7 +62,7 @@
             <Random/>
           </Numerator>
           <Denominator>
-			<Value value="0"/>
+            <Value value="0"/>
           </Denominator>
         </CFG_time_res>
       </Sending>
@@ -82,7 +82,7 @@
     </AddTransition>
     <UpdateMaxStep increase="2"/>
 
-	<!-- INVALID_TIME_RESOLUTION 3-->
+    <!-- INVALID_TIME_RESOLUTION 3-->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
         <CFG_time_res>
@@ -113,25 +113,25 @@
     </AddTransition>
     <UpdateMaxStep increase="2"/>
 
-	<AddTransition fromOffset="0" toOffset="1">
-	<Sending>
-	  <CFG_clear>
-		<Receiver>
-		  <Value value="1"/>
-		</Receiver>
-	  </CFG_clear>
-	</Sending>
-	</AddTransition>
-	<AddTransition fromOffset="1" toOffset="2">
-	<Receiving>
-	  <RSP_ack>
-		<Sender>
-		  <Value value="1"/>
-		</Sender>
-	  </RSP_ack>
-	</Receiving>
-	</AddTransition>
-	<UpdateMaxStep increase="2"/>
+    <AddTransition fromOffset="0" toOffset="1">
+    <Sending>
+      <CFG_clear>
+        <Receiver>
+          <Value value="1"/>
+        </Receiver>
+      </CFG_clear>
+    </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+    <Receiving>
+      <RSP_ack>
+        <Sender>
+          <Value value="1"/>
+        </Sender>
+      </RSP_ack>
+    </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
 
     <!-- Unkwown value reference input -->
     <AddTransition fromOffset="0" toOffset="1">
@@ -203,7 +203,7 @@
       </Receiving>
     </AddTransition>
     <UpdateMaxStep increase="2"/>
-	
+    
     <!-- Unkwown value reference parameter -->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
@@ -237,7 +237,7 @@
       </Receiving>
     </AddTransition>
     <UpdateMaxStep increase="2"/>
-	
+    
     <!-- Unkwown value reference tunable parameter -->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
@@ -275,26 +275,26 @@
     </AddTransition>
     <UpdateMaxStep increase="2"/>
 
-	<AddTransition fromOffset="0" toOffset="1">
-	<Sending>
-	  <CFG_clear>
-		<Receiver>
-		  <Value value="1"/>
-		</Receiver>
-	  </CFG_clear>
-	</Sending>
-	</AddTransition>
-	<AddTransition fromOffset="1" toOffset="2">
-	<Receiving>
-	  <RSP_ack>
-		<Sender>
-		  <Value value="1"/>
-		</Sender>
-	  </RSP_ack>
-	</Receiving>
-	</AddTransition>
-	<UpdateMaxStep increase="2"/>
-	
+    <AddTransition fromOffset="0" toOffset="1">
+    <Sending>
+      <CFG_clear>
+        <Receiver>
+          <Value value="1"/>
+        </Receiver>
+      </CFG_clear>
+    </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+    <Receiving>
+      <RSP_ack>
+        <Sender>
+          <Value value="1"/>
+        </Sender>
+      </RSP_ack>
+    </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    
     <!-- INCOMPLETE_CONFIGURATION No Gaps in CFG_config_output -->
     <If condition="hasOutput()">
       <AddTransition fromOffset="0" toOffset="1">
@@ -528,8 +528,8 @@
       </AddTransition>
       <UpdateMaxStep increase="2"/>
 
-	<!-- Need Valid Time resolution as this is checked first as per DCP Spec p 60-->
-	<AddTransition fromOffset="0" toOffset="1">
+    <!-- Need Valid Time resolution as this is checked first as per DCP Spec p 60-->
+    <AddTransition fromOffset="0" toOffset="1">
       <Sending>
         <CFG_time_res>
           <Receiver>
@@ -696,7 +696,7 @@
         </Receiving>
       </AddTransition>
       <UpdateMaxStep increase="2"/>
-	  
+      
       <AddTransition fromOffset="0" toOffset="1">
         <Sending>
           <CFG_input>
@@ -775,7 +775,7 @@
       </AddTransition>
       <UpdateMaxStep increase="2"/>
     </If>
-	
+    
     <!-- INCOMPLETE_CONFIGURATION No Gaps in CFG_config_tunable_paramter -->
     <If condition="hasTunableParameter()">
       <AddTransition fromOffset="0" toOffset="1">
@@ -948,28 +948,28 @@
       <UpdateMaxStep increase="2"/>
     </If>
 
-	
-	<AddTransition fromOffset="0" toOffset="1">
-	<Sending>
-	  <CFG_clear>
-		<Receiver>
-		  <Value value="1"/>
-		</Receiver>
-	  </CFG_clear>
-	</Sending>
-	</AddTransition>
-	<AddTransition fromOffset="1" toOffset="2">
-	<Receiving>
-	  <RSP_ack>
-		<Sender>
-		  <Value value="1"/>
-		</Sender>
-	  </RSP_ack>
-	</Receiving>
-	</AddTransition>
-	<UpdateMaxStep increase="2"/>
-	
-	    <!-- Wrong data type to input assignment-->
+    
+    <AddTransition fromOffset="0" toOffset="1">
+    <Sending>
+      <CFG_clear>
+        <Receiver>
+          <Value value="1"/>
+        </Receiver>
+      </CFG_clear>
+    </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+    <Receiving>
+      <RSP_ack>
+        <Sender>
+          <Value value="1"/>
+        </Sender>
+      </RSP_ack>
+    </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    
+        <!-- Wrong data type to input assignment-->
     <ForEach variableName="input">
       <Set>
         <Slave.Inputs/>
@@ -1052,7 +1052,7 @@
       <UpdateMaxStep increase="2"/>
     </ForEach>
 
-	<!-- Wrong state in transition-->
+    <!-- Wrong state in transition-->
     <ForEach variableName="oState">
       <Set>
         <DcpStates/>
@@ -1086,27 +1086,27 @@
         <UpdateMaxStep increase="2"/>
       </If>
     </ForEach>
-	
-	<AddTransition fromOffset="0" toOffset="1">
-	<Sending>
-	  <CFG_clear>
-		<Receiver>
-		  <Value value="1"/>
-		</Receiver>
-	  </CFG_clear>
-	</Sending>
-	</AddTransition>
-	<AddTransition fromOffset="1" toOffset="2">
-	<Receiving>
-	  <RSP_ack>
-		<Sender>
-		  <Value value="1"/>
-		</Sender>
-	  </RSP_ack>
-	</Receiving>
-	</AddTransition>
-	<UpdateMaxStep increase="2"/>
-	
+    
+    <AddTransition fromOffset="0" toOffset="1">
+    <Sending>
+      <CFG_clear>
+        <Receiver>
+          <Value value="1"/>
+        </Receiver>
+      </CFG_clear>
+    </Sending>
+    </AddTransition>
+    <AddTransition fromOffset="1" toOffset="2">
+    <Receiving>
+      <RSP_ack>
+        <Sender>
+          <Value value="1"/>
+        </Sender>
+      </RSP_ack>
+    </Receiving>
+    </AddTransition>
+    <UpdateMaxStep increase="2"/>
+    
     <!-- Start configuration for normal operation -->
     <AddTransition fromOffset="0" toOffset="1">
       <Sending>
@@ -1133,7 +1133,7 @@
       </Receiving>
     </AddTransition>
     <UpdateMaxStep increase="2"/>
-	
+    
     <!-- Configure Inputs -->
     <ForEach variableName="input">
       <Set>
