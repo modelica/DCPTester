@@ -1,5 +1,10 @@
 # DCP Tester
 
+### Documentation on Tester and Test Generator
+A [Whitepaper](https://github.com/modelica/DCPTester/blob/master/tester/documentation/documentation.pdf) on how to use the DCP Tester and DCP Test Generator is now available. It contains information not only about the DCP Tester itself, but also its usage together with the DCP Test Generator, templates and extensions, and the process of protocol based verification.
+
+Also take a look at the published Docker container, described in the Whitepaper.
+
 ### Build the DCP Tester
 To Build the DCP Tester the following Libararies needed to be installed: 
 - Asio
