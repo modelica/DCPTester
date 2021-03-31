@@ -10,5 +10,9 @@ services:
     volumes:
       - ./data/:/var/share:z
     build: ./docker
+    ports:
+      - "8080:8080"
+      - "2048:2048"
+      - "25000:25000"
     command: >
-        /bin/bash -c "ls /var/build/"
+        /bin/bash -c "cd /var/build/DCPTester/tester/Scripts && ./generate_Tests.sh && ./run_list_of_Tests.sh && cp -r logs /var/share && cp summary.log /var/share "
